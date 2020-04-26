@@ -198,11 +198,17 @@ def format_and_add_param(detail, api_key, get_detail):
     """
     address = detail["formatted_address"] if "formatted_address" in detail else detail.get("vicinity", "")
     place_id = "{} {}".format(detail["name"], address)
-
+    
+    try:
+        hours = detail["opening_hours"]
+        
+    except:
+        hours = None
     detail_json = {
+
         "place_id": detail["place_id"],
         "name": detail["name"],
-        "address": address,
+        "hours": hours,
         "place_types": detail["types"],
         "coordinates": detail["geometry"]["location"]
     }
