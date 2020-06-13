@@ -13,7 +13,7 @@ Google Maps API key https://developers.google.com/places/web-service/get-api-key
 ##### Options:
 1. `python3 -m pip install --upgrade git+https://github.com/GrocerCheck/LivePopularTimes`
 2. `clone` the repository, `cd` into the populartimes directory and run `pip install .`
-3. **Note**: The library is not *yet* available via PyPI
+3. `python3 -m pip install LivePopularTimes`
 
 ## Usage  
 
@@ -27,9 +27,16 @@ Retrieves information for a given address and adds populartimes, wait, time_spen
     + **formatted_address** 
         + str; address of location you are looking for, preferably in the following format:
             + "(*location name*) , *full address*, *city*, *province/state/etc*, *country*"
-    
+    + **proxy**
+        + default = False
+        + proxies ip in format 
+                    `{
+                    "http" : "http://10.10.1.10:2138",
+                    "https" : "http://10.10.1.10:1080",
+                    `}
+                    
     + **Example call**
-        + `livepopulartimes.get_populartimes_by_address("(H-Mart Dunbar) 5557 Dunbar Street, Vancouver BC, Canada")`
+        + `livepopulartimes.get_populartimes_by_address("(H-Mart Dunbar) 5557 Dunbar Street, Vancouver BC, Canada", proxy=proxy)`
 
 + **Response**
     + The information present for places can vary. Therefore *popularity*, *current_popularity*, *rating*, *rating_n*, *time_wait*, *time_spent* and *phone* are optional return parameters and only present if available.
@@ -76,9 +83,9 @@ Retrieves information for a given address and adds populartimes, wait, time_spen
         + `popular_times` *popular_times is "raw" data, please refer to example output for details*
         + `address`
         + `location`
-        + `hours`
             + `lat`
             + `lng`
+        + `hours`
         + `categories`
         + `place_types`
     + **Refer to `example_output(get_populartimes_by_PlaceID).json)` for example output**
